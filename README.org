@@ -1,0 +1,13 @@
+#+title: Backgammon timer
+
+Run the following command to start the server.
+
+#+begin_src sh
+python -m http.server 8000
+#+end_src
+
+Then point your browser at =http://localhost:8000/backgammon-clock.html=.
+
+At the start of the match each player is allocated 3 minutes and they get an
+extra 15 seconds to play each move. To start player 1's timer press the "f" key,
+to start player 2's timer press the "j" key.
