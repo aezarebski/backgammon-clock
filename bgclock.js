@@ -51,12 +51,17 @@ function runTimerTwo() {
 
 function clockRanOut(playerNumber) {
     gameClockState = ClockState.OFF;
-    document.getElementById("result").innerHTML = "Player " + playerNumber + " ran out of time!";
+    var message = (playerNumber == 1 ? "Red" : "White") + " player ran out of time!";
+    document.getElementById("result").innerHTML = message;
 }
 
 
 $('body').on('keyup', function() {
     if (event.which == PlayerKey.PLAYERONE) {
+        document.getElementById("playerOneName").className = "playerOneOn"
+        document.getElementById("playerOneTime").className = "playerOneOn"
+        document.getElementById("playerTwoName").className = "playerTwoOff"
+        document.getElementById("playerTwoTime").className = "playerTwoOff"
         if (gameClockState != ClockState.PLAYERONE) {
             gameClockState = ClockState.PLAYERONE;
             playerOneTime += numSecondsPerPlay;
@@ -64,6 +69,10 @@ $('body').on('keyup', function() {
             runTimerOne();
         }
     } else if (event.which == PlayerKey.PLAYERTWO) {
+        document.getElementById("playerOneName").className = "playerOneOff"
+        document.getElementById("playerOneTime").className = "playerOneOff"
+        document.getElementById("playerTwoName").className = "playerTwoOn"
+        document.getElementById("playerTwoTime").className = "playerTwoOn"
         if (gameClockState != ClockState.PLAYERTWO) {
             gameClockState = ClockState.PLAYERTWO;
             playerTwoTime += numSecondsPerPlay;

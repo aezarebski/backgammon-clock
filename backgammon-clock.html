@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
+        <link rel="stylesheet" href="stylesheet.css">
     </head>
 
     <body>
@@ -12,15 +13,18 @@
 			      crossorigin="anonymous">
         </script>
 
-        <h1>Player 1 time</h1>
+	<p class="information" style="margin-bottom:100px;">
+	Press "f" to start red's timer and "j" to start white's timer.
+	</p>
 
-        <p id="playerOneTime"></p>
+        <h1 id="playerOneName" class="playerOneOff">Red player time</h1>
+        <p id="playerOneTime" class="playerOneOff"></p>
 
-        <h1>Player 2 time</h1>
-
-        <p id="playerTwoTime"></p>
+        <h1 id="playerTwoName" class="playerTwoOff">White player time</h1>
+        <p id="playerTwoTime" class="playerTwoOff"></p>
 
         <h1 id="result"></h1>
+
 
         <script
 			      src="http://localhost:8000/bgclock.js">
