@@ -55,32 +55,45 @@ function clockRanOut(playerNumber) {
     document.getElementById("result").innerHTML = message;
 }
 
+function startOne() {
+    document.getElementById("playerOneName").className = "playerOneOn";
+    document.getElementById("playerOneTime").className = "playerOneOn";
+    document.getElementById("playerOneBox").className = "playerOneBoxOn";
+    document.getElementById("playerTwoName").className = "playerTwoOff";
+    document.getElementById("playerTwoTime").className = "playerTwoOff";
+    document.getElementById("playerTwoBox").className = "playerTwoBoxOff";
+    if (gameClockState != ClockState.PLAYERONE) {
+        gameClockState = ClockState.PLAYERONE;
+        playerOneTime += numSecondsPerPlay;
+     	  console.log("starting player one timer");
+        runTimerOne();
+    }
+}
 
-$('body').on('keyup', function() {
+function startTwo() {
+    document.getElementById("playerOneName").className = "playerOneOff";
+    document.getElementById("playerOneTime").className = "playerOneOff";
+    document.getElementById("playerOneBox").className = "playerOneBoxOff";
+    document.getElementById("playerTwoName").className = "playerTwoOn";
+    document.getElementById("playerTwoTime").className = "playerTwoOn";
+    document.getElementById("playerTwoBox").className = "playerTwoBoxOn";
+    if (gameClockState != ClockState.PLAYERTWO) {
+        gameClockState = ClockState.PLAYERTWO;
+        playerTwoTime += numSecondsPerPlay;
+        console.log("starting player two timer");
+        runTimerTwo();
+    }
+}
+
+function respondToEvent() {
     if (event.which == PlayerKey.PLAYERONE) {
-        document.getElementById("playerOneName").className = "playerOneOn"
-        document.getElementById("playerOneTime").className = "playerOneOn"
-        document.getElementById("playerTwoName").className = "playerTwoOff"
-        document.getElementById("playerTwoTime").className = "playerTwoOff"
-        if (gameClockState != ClockState.PLAYERONE) {
-            gameClockState = ClockState.PLAYERONE;
-            playerOneTime += numSecondsPerPlay;
-     	      console.log("starting player one timer");
-            runTimerOne();
-        }
+        startOne();
     } else if (event.which == PlayerKey.PLAYERTWO) {
-        document.getElementById("playerOneName").className = "playerOneOff"
-        document.getElementById("playerOneTime").className = "playerOneOff"
-        document.getElementById("playerTwoName").className = "playerTwoOn"
-        document.getElementById("playerTwoTime").className = "playerTwoOn"
-        if (gameClockState != ClockState.PLAYERTWO) {
-            gameClockState = ClockState.PLAYERTWO;
-            playerTwoTime += numSecondsPerPlay;
-            console.log("starting player two timer");
-            runTimerTwo();
-        }
+        startTwo();
     } else {
         console.log("neither f nor j so not doing anything...");
         console.log("the event code is " + event.which);
     }
-});
+};
+
+$('body').on('keyup', respondToEvent);
