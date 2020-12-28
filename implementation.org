@@ -45,9 +45,9 @@ The code for the backgammon clock is contained in this literate program.
 </html>
 #+end_src
 
-* Javascript
+* Typescript
 
-#+begin_src javascript :tangle bgclock.js
+#+begin_src javascript :tangle bgclock.ts
 // This is used as a way to specify which key starts the timer for each player.
 var PlayerKey = {
     PLAYERONE: 70,              // "f" key
@@ -70,13 +70,13 @@ var playerTwoTime = numMinutes * 60;
 var gameClockState = ClockState.OFF;
 
 
-document.getElementById("playerOneTime").innerHTML = playerOneTime;
-document.getElementById("playerTwoTime").innerHTML = playerTwoTime;
+document.getElementById("playerOneTime").innerHTML = playerOneTime.toString();
+document.getElementById("playerTwoTime").innerHTML = playerTwoTime.toString();
 
 
 function runTimerOne() {
     playerOneTime--;
-    document.getElementById("playerOneTime").innerHTML = playerOneTime;
+    document.getElementById("playerOneTime").innerHTML = playerOneTime.toString();
     if (playerOneTime > 0) {
         if (gameClockState == ClockState.PLAYERONE) {
             var t = setTimeout(runTimerOne, 1000);
@@ -88,7 +88,7 @@ function runTimerOne() {
 
 function runTimerTwo() {
     playerTwoTime--;
-    document.getElementById("playerTwoTime").innerHTML = playerTwoTime;
+    document.getElementById("playerTwoTime").innerHTML = playerTwoTime.toString();
     if (playerTwoTime > 0) {
         if (gameClockState == ClockState.PLAYERTWO) {
             var t = setTimeout(runTimerTwo, 1000);
@@ -99,7 +99,7 @@ function runTimerTwo() {
 }
 
 
-function clockRanOut(playerNumber) {
+function clockRanOut(playerNumber: number) {
     gameClockState = ClockState.OFF;
     var message = (playerNumber == 1 ? "Red" : "White") + " player ran out of time!";
     document.getElementById("result").innerHTML = message;
@@ -148,6 +148,15 @@ function respondToEvent() {
 
 $('body').on('keyup', respondToEvent);
 #+end_src
+
+The following typescript can be compiled to javascript using =tsc=.
+
+#+begin_src sh
+nix-shell -p nodePackages.typescript
+tsc bgclock.ts
+#+end_src
+
+This then produces the javascript that is used by the application.
 
 * CSS
 
