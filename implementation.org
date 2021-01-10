@@ -20,22 +20,26 @@ The code for the backgammon clock is contained in this literate program.
 			      crossorigin="anonymous">
         </script>
 
-	<p class="information" style="margin-bottom:100px;">
-	Press "f" to start red's timer and "j" to start white's timer.
-	</p>
-
-  <div id="playerOneBox" class="playerOneBoxOff" onclick="startOne()">
-        <h1 id="playerOneName" class="playerOneOff">Red player time</h1>
-        <p id="playerOneTime" class="playerOneOff"></p>
-  </div>
-
-  <div id="playerTwoBox" class="playerTwoBoxOff" onclick="startTwo()">
-        <h1 id="playerTwoName" class="playerTwoOff">White player time</h1>
-        <p id="playerTwoTime" class="playerTwoOff"></p>
-  </div>
 
         <h1 id="result"></h1>
 
+        <div id="playerOneBox" class="playerOneBoxOff" onclick="startOne()">
+            <h1 id="playerOneName" class="playerOneOff">Red</h1>
+            <p id="playerOneTime" class="playerOneOff"></p>
+        </div>
+
+        <div id="playerTwoBox" class="playerTwoBoxOff" onclick="startTwo()">
+            <h1 id="playerTwoName" class="playerTwoOff">White</h1>
+            <p id="playerTwoTime" class="playerTwoOff"></p>
+        </div>
+
+        <div id="restartButton" class="informationBox" onclick="restartClock()">
+            <h1 class="informationText">Restart</h1>
+        </div>
+
+	      <p class="informationText" style="margin-top:100px;">
+	          Press "f" to start red's timer and "j" to start white's timer.
+	      </p>
 
         <script
 			      src="http://localhost:8000/bgclock.js">
