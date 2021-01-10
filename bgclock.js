@@ -16,8 +16,20 @@ var numSecondsPerPlay = 15;
 var playerOneTime = numMinutes * 60;
 var playerTwoTime = numMinutes * 60;
 var gameClockState = ClockState.OFF;
-document.getElementById("playerOneTime").innerHTML = playerOneTime.toString();
-document.getElementById("playerTwoTime").innerHTML = playerTwoTime.toString();
+function restartClock() {
+    console.log("setting the clocks to initial state");
+    document.getElementById("playerOneName").className = "playerOneOff";
+    document.getElementById("playerOneTime").className = "playerOneOff";
+    document.getElementById("playerOneBox").className = "playerOneBoxOff";
+    document.getElementById("playerTwoName").className = "playerTwoOff";
+    document.getElementById("playerTwoTime").className = "playerTwoOff";
+    document.getElementById("playerTwoBox").className = "playerTwoBoxOff";
+    playerOneTime = numMinutes * 60;
+    playerTwoTime = numMinutes * 60;
+    gameClockState = ClockState.OFF;
+    document.getElementById("playerOneTime").innerHTML = playerOneTime.toString();
+    document.getElementById("playerTwoTime").innerHTML = playerTwoTime.toString();
+}
 function runTimerOne() {
     playerOneTime--;
     document.getElementById("playerOneTime").innerHTML = playerOneTime.toString();
@@ -88,4 +100,5 @@ function respondToEvent() {
     }
 }
 ;
+restartClock();
 $('body').on('keyup', respondToEvent);
