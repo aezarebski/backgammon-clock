@@ -30,6 +30,12 @@ function restartClock() {
     document.getElementById("playerOneTime").innerHTML = playerOneTime.toString();
     document.getElementById("playerTwoTime").innerHTML = playerTwoTime.toString();
 }
+function refreshClockOne() {
+    document.getElementById("playerOneTime").innerHTML = playerOneTime.toString();
+}
+function refreshClockTwo() {
+    document.getElementById("playerTwoTime").innerHTML = playerTwoTime.toString();
+}
 function runTimerOne() {
     if (gameClockState == ClockState.PLAYERONE) {
         playerOneTime--;
@@ -41,12 +47,6 @@ function runTimerOne() {
             clockRanOut(1);
         }
     }
-}
-function refreshClockOne() {
-    document.getElementById("playerOneTime").innerHTML = playerOneTime.toString();
-}
-function refreshClockTwo() {
-    document.getElementById("playerTwoTime").innerHTML = playerTwoTime.toString();
 }
 function runTimerTwo() {
     if (gameClockState == ClockState.PLAYERTWO) {
