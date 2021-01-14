@@ -1,7 +1,7 @@
 // This is used as a way to specify which key starts the timer for each player.
 var PlayerKey = {
-    PLAYERONE: 70,
-    PLAYERTWO: 74 // "j" key
+    PLAYERONE: 114,
+    PLAYERTWO: 119
 };
 // This is used to specify which player's clock is currently running.
 var ClockState = {
@@ -95,10 +95,9 @@ function respondToEvent() {
         startTwo();
     }
     else {
-        console.log("neither f nor j so not doing anything...");
+        console.log("neither w nor r so not doing anything...");
         console.log("the event code is " + event.which);
     }
 }
 ;
 restartClock();
-$('body').on('keyup', respondToEvent);
