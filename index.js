@@ -17,16 +17,17 @@ var numSecondsPerPlay = 15;
 var playerRedTime;
 var playerWhiteTime;
 var gameClockState = ClockState.OFF;
-function refreshClockRed() {
-    document.getElementById("playerRedTime").innerHTML = playerRedTime.toString();
+
+function refreshClock(playerColour) {
+    var clockId = "#player" + playerColour + "Time";
+    var playerTime = playerColour == "Red" ? playerRedTime.toString() : playerWhiteTime.toString();
+    $(clockId).text(playerTime);
 }
-function refreshClockWhite() {
-    document.getElementById("playerWhiteTime").innerHTML = playerWhiteTime.toString();
-}
+
 function runTimerRed() {
     if (gameClockState == ClockState.PLAYERRED) {
         playerRedTime--;
-        refreshClockRed();
+        refreshClock("Red");
         if (playerRedTime > 0) {
             var t = setTimeout(runTimerRed, 1000);
         }
@@ -38,7 +39,7 @@ function runTimerRed() {
 function runTimerWhite() {
     if (gameClockState == ClockState.PLAYERWHITE) {
         playerWhiteTime--;
-        refreshClockWhite();
+        refreshClock("White");
         if (playerWhiteTime > 0) {
             var t = setTimeout(runTimerWhite, 1000);
         }
@@ -47,14 +48,13 @@ function runTimerWhite() {
         }
     }
 }
+
 function clockRanOut(playerColour) {
     gameClockState = ClockState.OFF;
     var message = playerColour + " player ran out of time!";
     console.log(message);
     $("#result").text(message);
 }
-
-
 
 
 function resultBox() {
@@ -117,7 +117,7 @@ $(document).ready(function(){
     $("#playerRedBox").click(function() {
         if (gameClockState == ClockState.PLAYERWHITE) {
             playerWhiteTime += numSecondsPerPlay;
-            refreshClockWhite();
+            refreshClock("White");
         }
         $("#playerRedName").attr("class", "playerRedOn");
         $("#playerRedTime").attr("class", "playerRedOn");
@@ -135,7 +135,7 @@ $(document).ready(function(){
     $("#playerWhiteBox").click(function() {
         if (gameClockState == ClockState.PLAYERRED) {
             playerRedTime += numSecondsPerPlay;
-            refreshClockRed();
+            refreshClock("Red");
         }
         $("#playerWhiteName").attr("class", "playerWhiteOn");
         $("#playerWhiteTime").attr("class", "playerWhiteOn");
