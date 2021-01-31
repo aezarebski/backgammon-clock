@@ -31,7 +31,7 @@ function runTimerRed() {
             var t = setTimeout(runTimerRed, 1000);
         }
         else {
-            clockRanOut(1);
+            clockRanOut("Red");
         }
     }
 }
@@ -43,14 +43,15 @@ function runTimerWhite() {
             var t = setTimeout(runTimerWhite, 1000);
         }
         else {
-            clockRanOut(2);
+            clockRanOut("White");
         }
     }
 }
-function clockRanOut(playerNumber) {
+function clockRanOut(playerColour) {
     gameClockState = ClockState.OFF;
-    var message = (playerNumber == 1 ? "Red" : "White") + " player ran out of time!";
-    document.getElementById("result").innerHTML = message;
+    var message = playerColour + " player ran out of time!";
+    console.log(message);
+    $("#result").text(message);
 }
 
 
@@ -58,7 +59,8 @@ function clockRanOut(playerNumber) {
 
 function resultBox() {
     var rb = document.createElement("h1");
-    rb.addClass("informationText");
+    rb.setAttribute("class", "informationText");
+    rb.setAttribute("id", "result");
     return(rb);
 }
 
@@ -106,7 +108,8 @@ function restartButton() {
 $(document).ready(function(){
     console.log("hello world");
 
-    $("#bgClock").append(playerBox("Red"),
+    $("#bgClock").append(resultBox(),
+                         playerBox("Red"),
                          playerBox("White"),
                          pauseButton(),
                          restartButton());
@@ -146,6 +149,23 @@ $(document).ready(function(){
             runTimerWhite();
         }
     });
+
+    $("#restartButton").click(function() {
+        console.log("setting the clocks to initial state");
+        $("#playerRedName").attr("class", "playerRedOff");
+        $("#playerRedTime").attr("class", "playerRedOff");
+        $("#playerRedBox").attr("class", "playerRedBoxOff");
+        $("#playerWhiteName").attr("class", "playerWhiteOff");
+        $("#playerWhiteTime").attr("class", "playerWhiteOff");
+        $("#playerWhiteBox").attr("class", "playerWhiteBoxOff");
+        playerRedTime = numMinutes * 60;
+        playerWhiteTime = numMinutes * 60;
+        gameClockState = ClockState.OFF;
+        document.getElementById("playerRedTime").innerHTML = playerRedTime.toString();
+        document.getElementById("playerWhiteTime").innerHTML = playerWhiteTime.toString();
+        $("#result").text("");
+    });
+
 
     console.log("setting the clocks to initial state");
 
