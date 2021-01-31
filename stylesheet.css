@@ -12,7 +12,7 @@ p {
     font-size: 40px;
 }
 
-.playerOneBoxOff {
+.playerRedBoxOff {
     border-style: inset;
     border-color: rgb(191,97,106, 0.2);
     border-width: 7px;
@@ -20,12 +20,12 @@ p {
     margin: 10px;
 }
 
-.playerOneOff {
+.playerRedOff {
     color: rgb(191,97,106, 0.2);
     padding-left: 50px;
 }
 
-.playerOneBoxOn {
+.playerRedBoxOn {
     border-style: outset;
     border-color: rgb(191,97,106, 1.0);
     border-width: 7px;
@@ -33,13 +33,13 @@ p {
     margin: 10px;
 }
 
-.playerOneOn {
+.playerRedOn {
     color: rgb(191,97,106, 1.0);
     padding-left: 50px;
 }
 
 
-.playerTwoBoxOff {
+.playerWhiteBoxOff {
     border-style: inset;
     border-color: rgb(216,222,233,0.2);
     border-width: 7px;
@@ -47,12 +47,12 @@ p {
     margin: 10px;
 }
 
-.playerTwoOff {
+.playerWhiteOff {
     color: rgb(216,222,233,0.2);
     padding-left: 50px;
 }
 
-.playerTwoBoxOn {
+.playerWhiteBoxOn {
     border-style: outset;
     border-color: rgba(200, 200, 200, 1.0);
     border-width: 7px;
@@ -60,7 +60,7 @@ p {
     margin: 10px;
 }
 
-.playerTwoOn {
+.playerWhiteOn {
     color: rgba(200, 200, 200, 1.0);
     padding-left: 50px;
 }
