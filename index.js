@@ -104,6 +104,13 @@ function restartButton() {
     return(rb);
 }
 
+function togglePlayer(colour, state) {
+    var newState = "player" + colour + state;
+    var newStateBox = "player" + colour + "Box" + state;
+    $("#player" + colour + "Name").attr("class", newState);
+    $("#player" + colour + "Time").attr("class", newState);
+    $("#player" + colour + "Box").attr("class", newStateBox);
+}
 
 $(document).ready(function(){
     console.log("hello world");
@@ -119,12 +126,8 @@ $(document).ready(function(){
             playerWhiteTime += numSecondsPerPlay;
             refreshClock("White");
         }
-        $("#playerRedName").attr("class", "playerRedOn");
-        $("#playerRedTime").attr("class", "playerRedOn");
-        $("#playerRedBox").attr("class", "playerRedBoxOn");
-        $("#playerWhiteName").attr("class", "playerWhiteOff");
-        $("#playerWhiteTime").attr("class", "playerWhiteOff");
-        $("#playerWhiteBox").attr("class", "playerWhiteBoxOff");
+        togglePlayer("Red", "On");
+        togglePlayer("White", "Off");
         if (gameClockState != ClockState.PLAYERRED) {
             gameClockState = ClockState.PLAYERRED;
             console.log("starting player red timer");
@@ -137,12 +140,8 @@ $(document).ready(function(){
             playerRedTime += numSecondsPerPlay;
             refreshClock("Red");
         }
-        $("#playerWhiteName").attr("class", "playerWhiteOn");
-        $("#playerWhiteTime").attr("class", "playerWhiteOn");
-        $("#playerWhiteBox").attr("class", "playerWhiteBoxOn");
-        $("#playerRedName").attr("class", "playerRedOff");
-        $("#playerRedTime").attr("class", "playerRedOff");
-        $("#playerRedBox").attr("class", "playerRedBoxOff");
+        togglePlayer("White", "On");
+        togglePlayer("Red", "Off");
         if (gameClockState != ClockState.PLAYERWHITE) {
             gameClockState = ClockState.PLAYERWHITE;
             console.log("starting player white timer");
@@ -152,12 +151,8 @@ $(document).ready(function(){
 
     $("#restartButton").click(function() {
         console.log("setting the clocks to initial state");
-        $("#playerRedName").attr("class", "playerRedOff");
-        $("#playerRedTime").attr("class", "playerRedOff");
-        $("#playerRedBox").attr("class", "playerRedBoxOff");
-        $("#playerWhiteName").attr("class", "playerWhiteOff");
-        $("#playerWhiteTime").attr("class", "playerWhiteOff");
-        $("#playerWhiteBox").attr("class", "playerWhiteBoxOff");
+        togglePlayer("Red", "Off");
+        togglePlayer("White", "Off");
         playerRedTime = numMinutes * 60;
         playerWhiteTime = numMinutes * 60;
         gameClockState = ClockState.OFF;
@@ -169,12 +164,8 @@ $(document).ready(function(){
 
     console.log("setting the clocks to initial state");
 
-    $("#playerRedName").attr("class", "playerRedOff");
-    $("#playerRedTime").attr("class", "playerRedOff");
-    $("#playerRedBox").attr("class", "playerRedBoxOff");
-    $("#playerWhiteName").attr("class", "playerWhiteOff");
-    $("#playerWhiteTime").attr("class", "playerWhiteOff");
-    $("#playerWhiteBox").attr("class", "playerWhiteBoxOff");
+    togglePlayer("Red", "Off");
+    togglePlayer("White", "Off");
 
     playerRedTime = numMinutes * 60;
     playerWhiteTime = numMinutes * 60;
